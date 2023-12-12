@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>计时器示例</title>
+</head>
+<body>
+  <h1>计时器示例</h1>
+  <button id="start">开始计时</button>
+  <button id="stop">结束计时</button>
+  <p>耗时：<span id="time">0</span> 秒</p>
+
+  <script>
+    const startButton = document.querySelector('#start');
+    const stopButton = document.querySelector('#stop');
+    const timeEl = document.querySelector('#time');
+
+    let startTime, endTime, elapsedTime, timerInterval;
+
+    startButton.addEventListener('click', () => {
+      startTime = Date.now();
+      timerInterval = setInterval(() => {
+        elapsedTime = Math.floor((Date.now() - startTime) / 1000);
+        timeEl.textContent = elapsedTime;
+      }, 1000);
+    });
+
+    stopButton.addEventListener('click', () => {
+      endTime = Date.now();
+      clearInterval(timerInterval);
+      elapsedTime = Math.floor((endTime - startTime) / 1000);
+      timeEl.textContent = elapsedTime;
+
+      // 将耗时提交到后端
+      fetch('/submit-time', {
+        method: 'POST',
+        body: JSON.stringify({ time: elapsedTime }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('提交成功！');
+        } else {
+          console.error('提交失败！');
+        }
+      })
+      .catch(error => {
+        console.error('提交失败：', error);
+      });
+    });
+  </script>
+</body>
+</html>

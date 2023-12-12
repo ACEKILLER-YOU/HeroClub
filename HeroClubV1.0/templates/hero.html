@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/bootstrap-4.6.2-dist/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+    <div class="text-lg-center">
+        <img src="/static/img/hero_club_logo.png" width="300">
+        <h1 class="display-3" style="display: inline-block;">英雄协会打卡系统V1.0</h1>
+    </div>
+</div>
+<p class="text-lg-center h3">道阻且长,行则将至</p>
+<br>
+<div style="height: 50px"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+        <h2>学习打卡区(1h+)</h2>
+        <button type="button" class="btn btn-primary" id="study-start">开始计时</button>
+        <button type="button" class="btn btn-danger" id="study-stop">结束计时</button>
+        <button type="button" class="btn btn-success" id="study-submit">提交打卡</button>
+        <h1 class="text-info font-weight-bold">计时：<span id="study-time">00:00:00</span></h1>
+    </div>
+    <div class="col-sm">
+        <h2>锻炼打卡区(30min+)</h2>
+        <button type="button" class="btn btn-primary" id="strong-start">开始计时</button>
+        <button type="button" class="btn btn-danger" id="strong-stop">结束计时</button>
+        <button type="button" class="btn btn-success" id="strong-submit">提交打卡</button>
+        <h1 class="text-info font-weight-bold">计时：<span id="strong-time">00:00:00</span></h1>
+    </div>
+  </div>
+</div>
+<div class="container">
+    <h1>当月打卡记录</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>日期</th>
+            <th>打卡时间</th>
+            <th>学习用时（H）</th>
+            <th>锻炼用时（H）</th>
+            <th>连续性</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for item in data_list %}
+            <tr>
+                <td>{{ item.upload_date }}</td>
+                <td>{{ item.upload_time }}</td>
+                <td>{{ item.study_use }}</td>
+                <td>{{ item.strong_use }}</td>
+                <td>已坚持打卡 {{ item.still_day }}天</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous-目前是摆设</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div><div class="container">
+    <h1>历史打卡记录</h1>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>日期</th>
+            <th>打卡时间</th>
+            <th>学习用时</th>
+            <th>锻炼用时</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>2023年10月12日</td>
+            <td>18:46</td>
+            <td>2h</td>
+            <td>1h</td>
+        </tr>
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+        </ul>
+    </nav>
+</div>
+<script src="/static/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+<script src="/static/bootstrap-4.6.2-dist/js/SetTime_Study.js"></script>
+<script src="/static/bootstrap-4.6.2-dist/js/SetTime_Strong.js"></script>
+</body>
+</html>
