@@ -12,7 +12,7 @@
 
 # 问题清单
 
-emjo : :heavy_check_mark:/ :heavy_multiplication_x:
+emjo : ✔️ / ✖️
 
 [:heavy_multiplication_x:]提交打卡后前端没有提示。
 
