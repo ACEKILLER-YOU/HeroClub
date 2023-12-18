@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/HeroClub/index")
 def show_checklist():
     # 连接MySQL
-    conn = pymysql.connect(host="127.0.0.1", port=3306, user='root', password="shujukutiancai9527", charset='utf8',  db='checkindata')
+    conn = pymysql.connect(host="127.0.0.1", port=3306, user='root', password="", charset='utf8',  db='checkindata')
     cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
     # 发送指令
     sql = "select * from online_check_in"
@@ -30,7 +30,7 @@ def upload_data_study():
     # print(study_time)
     # 2、将time写入数据库
     # 2.1 连接MySQL
-    conn = pymysql.connect(host="127.0.0.1", port=3306, user='root', password="shujukutiancai9527", charset='utf8',  db='checkindata')
+    conn = pymysql.connect(host="127.0.0.1", port=3306, user='root', password="", charset='utf8',  db='checkindata')
     cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
     # 2.2 发送指令
     sql = "insert into online_check_in(study_use) values (%s)"
@@ -78,7 +78,7 @@ def upload_data_Strong():
     # print(study_time)
     # 2、将time写入数据库
     # 2.1 连接MySQL
-    conn = pymysql.connect(host="127.0.0.1", port=3306, user='root', password="shujukutiancai9527", charset='utf8',  db='checkindata')
+    conn = pymysql.connect(host="127.0.0.1", port=3306, user='root', password="", charset='utf8',  db='checkindata')
     cursor = conn.cursor(cursor=pymysql.cursors.DictCursor)
     # 2.2 发送指令
     sql = "insert into online_check_in(strong_use) values (%s)"
