@@ -56,6 +56,29 @@
             </tr>
         {% endfor %}
         </tbody>
+
+        <script>
+        // 将时间的秒数转换为小时数
+        var data_list = {{ data_list|tojson }};
+        for (var i = 0; i < data_list.length; i++) {
+            data_list[i].study_use = data_list[i].study_use / 3600;
+        }
+    
+        // 渲染数据
+        var tbody = document.querySelector('tbody');
+        var html = '';
+        for (var i = 0; i < data_list.length; i++) {
+            html += '<tr>';
+            html += '<td>' + data_list[i].upload_date + '</td>';
+            html += '<td>' + data_list[i].upload_time + '</td>';
+            html += '<td>' + data_list[i].study_use + '</td>';
+            html += '<td>' + data_list[i].strong_use + '</td>';
+            html += '<td>已坚持打卡 ' + data_list[i].still_day + ' 天</td>';
+            html += '</tr>';
+        }
+        tbody.innerHTML = html;
+</script>
+        
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination">
